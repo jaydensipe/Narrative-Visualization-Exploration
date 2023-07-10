@@ -1,0 +1,129 @@
+/* https://blog.logrocket.com/creating-visualizations-d3-typescript/#:~:text=Although%20D3%20is%20a%20JavaScript,visualizations%20using%20D3%20and%20TypeScript. */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+:root {
+  --orange: rgb(226, 167, 136);
+  --dark-orange: rgb(252, 187, 152);
+  --blue: rgb(88, 161, 206);
+  --blue-alpha: rgba(88, 161, 206, .1);
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #e3fffd;
+}
+
+.title {
+  background-color: var(--orange);
+  padding: 1rem;
+  color: white;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  width: 80%;
+  height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: none; 
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 12px 12px 2px 1px var(--blue-alpha);
+}
+
+.container::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.5rem;
+  margin: auto;
+  width: 70%;
+}
+
+.button {
+  background-color: var(--orange);
+  font-size: 15px;
+  border: none;
+  padding: 0.7rem;
+  color: white;
+  border-radius: 5px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.button:hover {
+  background-color: var(--dark-orange);
+  cursor: pointer;
+}
+
+.button:active {
+  background-color: var(--orange);
+}
+
+.button:disabled {
+  background-color: rgb(192, 187, 185);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+}
+
+.title-text {
+  background-color: var(--blue);
+  padding: 1rem;
+  color: white;
+  width: 100%;
+  text-align: center;
+  animation: popin 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.bottom-title-text {
+  background-color: rgb(88, 161, 206);
+  font-size: 50px;
+  padding: 1rem;
+  color: white;
+  border-radius: 15px;
+  text-align: center;
+  animation: popin 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.sub-text {
+  font-size: 25px;
+  padding: 1rem;
+  color: var(--blue);
+  text-align: center;
+  animation: popin 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-delay: 5s;
+  animation-fill-mode: forwards;
+  scale: 0;
+}
+
+.spinning-globe {
+  margin: -30px;
+  animation: popin 1s cubic-bezier(1, 0, 0, 1);
+  animation-fill-mode: forwards;
+  animation-delay: 0.5s;
+  scale: 0;
+}
+
+p, ul {
+  animation: popin 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  scale: 0;
+  animation-fill-mode: forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes popin {
+  from {
+    scale: 0;
+  }
+
+  to {
+    scale: 1;
+  }
+}
