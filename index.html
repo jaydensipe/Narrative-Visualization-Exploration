@@ -6,22 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jayden Sipe - N.V.</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕹️</text></svg>">
     <script type="module" src="js/button_controls.js"></script>
-    <script type="module" src="js/d3_charting.js"></script>
+    <script type="module" src="js/d3_charts/chart_1.js"></script>
+    <script type="module" src="js/d3_charts/chart_2.js"></script>
+    <script type="module" src="js/d3_charts/chart_3.js"></script>
 </head>
 
 <body>
     <h1 class="title">Jayden Sipe CS 416 - Narrative Visualization</h1>
     <br />
     <div class="container" id="page-1">
-        <h1 class="title-text">Exploring the World of...</h1>
+        <h1 class="title-text" style="text-align: center !important;">Exploring the World of...</h1>
         <img class="spinning-globe"
             src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnh0bzA0MjZ4dDk2bGhnanR2emwwZ3EweGNiY25kNTljaWJpMzJzZCZlcD12MV9naWZzX3NlYXJjaCZjdD1z/lnsTFyT6wUzItXsUV5/source.gif"
             alt="Spinning earth.">
         <h1 class="bottom-title-text">Video Games! 🖥️</h1>
     </div>
     <div class="container" id="page-2" style="display: none;">
-        <h1 class="title-text" style="text-align: left; margin-left: 2rem;">Let's take a look at our dataset...</h1>
+        <h1 class="title-text">Let's take a look at our dataset...</h1>
         <p style="font-weight: bold; font-size: 1.1rem; text-align: center;">The Video Game Dataset contains 20,580
             entries, with each entry representing a video game. The dataset
             includes 8 columns:</p>
@@ -38,25 +42,36 @@
         <h1 class="sub-text">Now, let's take a look at some interesting information!</h1>
     </div>
     <div class="container" id="page-3" style="display: none;">
-        <h1 class="title-text" style="text-align: left; margin-left: 2rem;">Is there a relation between rating and date
+        <h1 class="title-text">Is there a relation between rating and date
             released?</h1>
+        <svg id="chart-1" width="800" height="400"></svg>
     </div>
     <div class="container" id="page-4" style="display: none;">
-        <h1 class="title-text" style="text-align: left; margin-left: 2rem;">What are the Top-10 Highest Rated Games?
+        <h1 class="title-text">What are the Top-10 Highest Rated Games?
         </h1>
+        <div class="inner-container">
+            <p style="font-size: 1.1rem; text-align: left; max-width: 250px;">Here, you have the
+                opportunity to explore the <b>top-rated games</b> from <i>within this dataset</i>, enabling you to make
+                informed
+                decisions about which games to consider. <br /> <br />As you hover over each bar in the chart, you have
+                the option to <b>click</b> and be <b>directed to a YouTube video</b> showcasing the trailer for the
+                selected game.
+                This interactive feature enables you to explore the game further and get a glimpse of it's gameplay.</p>
+            <svg id="chart-2" width="600" height="350"></svg>
+        </div>
     </div>
     <div class="container" id="page-5" style="display: none;">
-        <h1 class="title-text" style="text-align: left; margin-left: 2rem;">TBD...
+        <h1 class="title-text">TBD...
         </h1>
     </div>
     <div class="container" id="page-6" style="display: none;">
-        <h1 class="title-text" style="text-align: left; margin-left: 2rem;">Credits!
+        <h1 class="title-text">Credits!
         </h1>
     </div>
     <br />
     <div class=" button-container">
-        <button class="button" id="back-button">Go back</button>
-        <button class="button" id="next-button">Next</button>
+        <button class="button" id="back-button">← Go back</button>
+        <button class="button" id="next-button">Next →</button>
     </div>
 </body>
 

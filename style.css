@@ -29,14 +29,30 @@ body {
   height: 500px;
   overflow-y: scroll;
   overflow-x: hidden;
-  scrollbar-width: none; 
+  scrollbar-width: none;
   background-color: white;
   border-radius: 15px;
   box-shadow: 12px 12px 2px 1px var(--blue-alpha);
 }
 
-.container::-webkit-scrollbar { 
-  display: none;  /* Safari and Chrome */
+.inner-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 738px) {
+  .inner-container {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
 }
 
 .button-container {
@@ -77,8 +93,9 @@ body {
   background-color: var(--blue);
   padding: 1rem;
   color: white;
+  text-align: left;
+  margin-left: 2rem;
   width: 100%;
-  text-align: center;
   animation: popin 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
@@ -111,11 +128,19 @@ body {
   scale: 0;
 }
 
-p, ul {
+p,
+ul {
   animation: popin 1s cubic-bezier(0.075, 0.82, 0.165, 1);
   scale: 0;
   animation-fill-mode: forwards;
   animation-delay: 0.5s;
+}
+
+#chart-2 {
+  animation: popin 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  scale: 0;
+  animation-fill-mode: forwards;
+  animation-delay: 0.25s;
 }
 
 @keyframes popin {
@@ -126,4 +151,11 @@ p, ul {
   to {
     scale: 1;
   }
+}
+
+.bar:hover {
+  fill: var(--dark-orange);
+  cursor: pointer;
+  transition: 0.2s;
+  scale: 1.005;
 }

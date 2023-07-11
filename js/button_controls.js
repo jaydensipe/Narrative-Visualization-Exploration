@@ -1,3 +1,5 @@
+import { animateChartsOnPage } from "./animation_control";
+
 // Initialize buttons and functions to dswitch between pages
 let nextButton = document.getElementById('next-button');
 if (nextButton.addEventListener) {
@@ -13,11 +15,18 @@ if (backButton.addEventListener) {
     backButton.attachEvent('onclick', buttonGoBack);
 }
 
+// Initializes correct input for back button
+if (!document.getElementById("page-" + (currentPage - 1))) {
+    document.getElementById("back-button").disabled = true;
+}
 
 var currentPage = 1;
 function buttonGoNext() {
     document.getElementById("page-" + currentPage).style.display = "none";
     document.getElementById("page-" + ++currentPage).style.display = "";
+
+    // Animate the charts
+    animateChartsOnPage(currentPage);
 
     if (!document.getElementById("page-" + (currentPage + 1))) {
         document.getElementById("next-button").disabled = true;
