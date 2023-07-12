@@ -2,6 +2,12 @@ import * as d3 from 'd3';
 
 // Chart 2 D3 Charting
 var x = null;
+
+const svg = d3.select("#chart-2"),
+    margin = { top: 0, right: 10, bottom: 20, left: 250 },
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom;
+
 d3.csv("games.csv").then(function (data) {
     data.forEach(function (d) {
         d.rating = +d.rating;
@@ -13,26 +19,18 @@ d3.csv("games.csv").then(function (data) {
 
     var top10 = data.slice(0, 10);
 
-    // Set up the SVG and chart dimensions
-    var svg = d3.select("#chart-2"),
-        margin = { top: 0, right: 10, bottom: 20, left: 250 },
-        width = +svg.attr("width") - margin.left - margin.right,
-        height = +svg.attr("height") - margin.top - margin.bottom;
-
     x = d3.scaleLinear().rangeRound([0, width]);
     var y = d3.scaleBand().rangeRound([height, 0]).padding(0.1);
 
     var g = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    // Set the domains for x and y scales
     x.domain([4.5, d3.max(top10, function (d) { return d.rating; })]);
     y.domain(top10.map(function (d) { return d.name; }));
 
-    // Define a color scale for the bars
     var colorScale = d3.scaleDivergingSymlog()
         .domain([0, top10.length])
-        .interpolator(d3.interpolateRgb.gamma(2.2)("lightblue", "darkblue"));
+        .interpolator(d3.interpolateRgb.gamma(2.2)("lightgreen", "darkgreen"));
 
     g.selectAll(".bar")
         .data(top10)
@@ -43,12 +41,10 @@ d3.csv("games.csv").then(function (data) {
         .attr("fill", function (d, i) { return colorScale(i); })
         .on("click", function (d, i) { openVideoPlayback(i); });
 
-    // Draw the x-axis
     g.append("g")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x));
 
-    // Draw the y-axis
     g.append("g")
         .call(d3.axisLeft(y));
 

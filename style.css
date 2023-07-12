@@ -1,16 +1,28 @@
-/* https://blog.logrocket.com/creating-visualizations-d3-typescript/#:~:text=Although%20D3%20is%20a%20JavaScript,visualizations%20using%20D3%20and%20TypeScript. */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 :root {
   --orange: rgb(226, 167, 136);
   --dark-orange: rgb(252, 187, 152);
+  --purple: rgb(153, 102, 204);
+  --dark-purple: rgb(179, 122, 220);
+  --green: rgb(2, 217, 196);
+  --green-alpha: rgba(2, 217, 196, .05);
+  --light-green: rgb(220, 255, 223);
   --blue: rgb(88, 161, 206);
   --blue-alpha: rgba(88, 161, 206, .1);
+  --font: 'Ubuntu', sans-serif;
+  --default-popin: popin 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  --dark-mode-transition-time: 0.25s;
 }
 
 body {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: var(--font);
   background-color: #e3fffd;
+  transition: var(--dark-mode-transition-time);
+}
+
+.dark-body {
+  background-color: #121212 !important;
 }
 
 .title {
@@ -18,6 +30,29 @@ body {
   padding: 1rem;
   color: white;
   text-align: center;
+  border-radius: 15px;
+  transition: var(--dark-mode-transition-time);
+}
+
+.dark-purple {
+  background-color: var(--purple) !important;
+}
+
+.dark-purple:hover {
+  background-color: var(--dark-purple) !important;
+}
+
+.dark-purple:disabled {
+  background-color: rgb(89, 83, 98) !important;
+  color: rgba(142, 142, 142, 0.5) !important;
+}
+
+.dark-green {
+  background-color: var(--green) !important;
+}
+
+.dark-green-text {
+  color: var(--green) !important;
 }
 
 .container {
@@ -27,12 +62,19 @@ body {
   margin: auto;
   width: 80%;
   height: 500px;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-width: none;
   background-color: white;
   border-radius: 15px;
   box-shadow: 12px 12px 2px 1px var(--blue-alpha);
+  transition: var(--dark-mode-transition-time);
+}
+
+.dark-container {
+  background-color: #1e1e1e !important;
+  fill: rgba(255, 255, 255, 0.87) !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+  box-shadow: 12px 12px 2px 1px var(--green-alpha) !important
 }
 
 .inner-container {
@@ -41,25 +83,28 @@ body {
   gap: 0px;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 738px) {
+@media only screen and (max-width: 900px) {
   .inner-container {
     flex-direction: column !important;
-    gap: 2rem !important;
+    gap: 1rem !important;
     align-items: center;
     justify-content: center;
   }
-}
 
-.container::-webkit-scrollbar {
-  display: none;
-  /* Safari and Chrome */
+  .inner-container>p {
+    text-align: center !important;
+  }
+
+  .container {
+    width: 100% !important;
+  }
 }
 
 .button-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1.5rem;
+  padding: 1.0rem;
   margin: auto;
   width: 70%;
 }
@@ -71,7 +116,8 @@ body {
   padding: 0.7rem;
   color: white;
   border-radius: 5px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: var(--font);
+  transition: var(--dark-mode-transition-time);
 }
 
 .button:hover {
@@ -94,19 +140,24 @@ body {
   padding: 1rem;
   color: white;
   text-align: left;
-  margin-left: 2rem;
   width: 100%;
-  animation: popin 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: var(--default-popin);
+  transition: var(--dark-mode-transition-time);
+}
+
+h1.title-text {
+  margin-left: 2rem;
 }
 
 .bottom-title-text {
   background-color: rgb(88, 161, 206);
-  font-size: 50px;
+  font-size: 40px;
   padding: 1rem;
   color: white;
   border-radius: 15px;
   text-align: center;
-  animation: popin 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: var(--default-popin);
+  transition: var(--dark-mode-transition-time);
 }
 
 .sub-text {
@@ -114,10 +165,11 @@ body {
   padding: 1rem;
   color: var(--blue);
   text-align: center;
-  animation: popin 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: var(--default-popin);
   animation-delay: 5s;
   animation-fill-mode: forwards;
   scale: 0;
+  transition: var(--dark-mode-transition-time);
 }
 
 .spinning-globe {
@@ -130,17 +182,11 @@ body {
 
 p,
 ul {
-  animation: popin 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: var(--default-popin);
   scale: 0;
   animation-fill-mode: forwards;
   animation-delay: 0.5s;
-}
-
-#chart-2 {
-  animation: popin 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-  scale: 0;
-  animation-fill-mode: forwards;
-  animation-delay: 0.25s;
+  transition: var(--dark-mode-transition-time);
 }
 
 @keyframes popin {
@@ -153,9 +199,51 @@ ul {
   }
 }
 
+/* Chart 1 Styling */
+#chart-1 {
+  animation: var(--default-popin);
+  scale: 0;
+  animation-fill-mode: forwards;
+  animation-delay: 0.25s;
+
+  @media screen and (max-width: 650px) {
+    transform: scale(0.75, 0.75);
+  }
+}
+
+/* Chart 2 Styling */
+#chart-2 {
+  animation: var(--default-popin);
+  scale: 0;
+  animation-fill-mode: forwards;
+  animation-delay: 0.25s;
+
+  @media screen and (max-width: 650px) {
+    transform: scale(0.75, 0.75);
+  }
+}
+
 .bar:hover {
-  fill: var(--dark-orange);
+  fill: var(--light-green);
   cursor: pointer;
   transition: 0.2s;
-  scale: 1.005;
+}
+
+/* Chart 3 Styling */
+#chart-3 {
+  animation: var(--default-popin);
+  scale: 0;
+  animation-fill-mode: forwards;
+  animation-delay: 0.25s;
+
+  @media screen and (max-width: 1000px) {
+    margin: 0 0 0 100px;
+  }
+}
+
+.arc:hover {
+  transform: scale(0.95, 0.95);
+  opacity: 0.65;
+  transition: 0.25s;
+  cursor: default;
 }

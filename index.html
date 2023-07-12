@@ -9,16 +9,18 @@
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕹️</text></svg>">
     <script type="module" src="js/button_controls.js"></script>
+    <script type="module" src="js/dark_mode.js"></script>
     <script type="module" src="js/d3_charts/chart_1.js"></script>
     <script type="module" src="js/d3_charts/chart_2.js"></script>
     <script type="module" src="js/d3_charts/chart_3.js"></script>
 </head>
 
-<body>
-    <h1 class="title">Jayden Sipe CS 416 - Narrative Visualization</h1>
+<body id="body">
+    <h1 class="title">Jayden Sipe - Narrative Visualization 📈</h1>
     <br />
     <div class="container" id="page-1">
-        <h1 class="title-text" style="text-align: center !important;">Exploring the World of...</h1>
+        <h1 class="title-text" style="text-align: center !important; margin-left: 0 !important;">Exploring the World
+            of...</h1>
         <img class="spinning-globe"
             src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnh0bzA0MjZ4dDk2bGhnanR2emwwZ3EweGNiY25kNTljaWJpMzJzZCZlcD12MV9naWZzX3NlYXJjaCZjdD1z/lnsTFyT6wUzItXsUV5/source.gif"
             alt="Spinning earth.">
@@ -44,14 +46,17 @@
     <div class="container" id="page-3" style="display: none;">
         <h1 class="title-text">Is there a relation between rating and date
             released?</h1>
-        <svg id="chart-1" width="800" height="400"></svg>
+        <br />
+        <br />
+        <br />
+        <svg id="chart-1" width="900" height="300"></svg>
     </div>
     <div class="container" id="page-4" style="display: none;">
-        <h1 class="title-text">What are the Top-10 Highest Rated Games?
+        <h1 class="title-text">What are the Top-10 Highest Rated Games? *
         </h1>
         <div class="inner-container">
             <p style="font-size: 1.1rem; text-align: left; max-width: 250px;">Here, you have the
-                opportunity to explore the <b>top-rated games</b> from <i>within this dataset</i>, enabling you to make
+                opportunity to explore the <b>top-rated games</b> from <i>within this dataset*</i>, enabling you to make
                 informed
                 decisions about which games to consider. <br /> <br />As you hover over each bar in the chart, you have
                 the option to <b>click</b> and be <b>directed to a YouTube video</b> showcasing the trailer for the
@@ -61,16 +66,42 @@
         </div>
     </div>
     <div class="container" id="page-5" style="display: none;">
-        <h1 class="title-text">TBD...
+        <h1 class="title-text">Historically, which month released the most games?
         </h1>
+        <div class="inner-container">
+            <svg id="chart-3"></svg>
+            <p style="font-size: 1.1rem; text-align: right; max-width: 250px;">This pie chart provides an overview of
+                the <b>number of games</b> released in each <b>corresponding month</b>. By examining the chart, we can
+                observe that
+                November had the highest count, <i>indicating</i> the greatest amount of games released during that
+                month.
+                <br /><br />To
+                explore the <b>exact total</b> for each month, <b>simply hover over a segment</b> of the pie chart to
+                reveal the
+                cumulative count of games released in that particular month.
+            </p>
+        </div>
     </div>
     <div class="container" id="page-6" style="display: none;">
         <h1 class="title-text">Credits!
         </h1>
+        <p style="font-size: 1.1rem; text-align: center;">Created for the <a
+                href="https://cs.illinois.edu/academics/graduate/professional-mcs"><b>University of
+                    Illinois at Urbana-Champaign's</b></a> CS 416 Data Visualization course.</p>
+        <ul style="font-size: 1.1rem;">
+            <li><b>Author:</b> Jayden Sipe</li>
+            <li><b>Dataset:</b> <a
+                    href="https://www.kaggle.com/datasets/shivamvadalia27/video-games?resource=download">https://www.kaggle.com/datasets/shivamvadalia27/video-games?resource=download</a>
+            </li>
+            <li><b>Tools used:</b> HTML, CSS, JS, D3.js, Vite, Node.js</li>
+        </ul>
     </div>
     <br />
     <div class=" button-container">
         <button class="button" id="back-button">← Go back</button>
+        <button id="dark-mode-toggle-button"
+            style="background-color: transparent; scale: 1.5; border-color: transparent; cursor: pointer;"
+            title="Dark mode toggle">🌖</button>
         <button class="button" id="next-button">Next →</button>
     </div>
 </body>

@@ -1,6 +1,8 @@
 import { animateChartsOnPage } from "./animation_control";
 
-// Initialize buttons and functions to dswitch between pages
+var currentPage = 1;
+
+// Initialize buttons and functions to switch between pages
 let nextButton = document.getElementById('next-button');
 if (nextButton.addEventListener) {
     nextButton.addEventListener('click', buttonGoNext, false);
@@ -20,7 +22,6 @@ if (!document.getElementById("page-" + (currentPage - 1))) {
     document.getElementById("back-button").disabled = true;
 }
 
-var currentPage = 1;
 function buttonGoNext() {
     document.getElementById("page-" + currentPage).style.display = "none";
     document.getElementById("page-" + ++currentPage).style.display = "";
