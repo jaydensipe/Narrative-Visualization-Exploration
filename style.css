@@ -277,8 +277,12 @@ text.annotation-note-label {
   animation-delay: 0.25s;
 }
 
+text.annotation-note-label,
 .annotation-connector {
-  opacity: 0.2;
+  scale: 0;
+  animation: var(--default-popin);
+  animation-fill-mode: forwards;
+  animation-delay: 3.0s;
 }
 
 .arc:hover {

@@ -15,7 +15,7 @@ const pie = d3.pie()
     .value(function (d) { return d.count; }).sort(null);
 
 const svg = d3.select('#chart-3')
-    .attr('width', width + 100)
+    .attr('width', width)
     .attr('height', height)
     .append('g')
     .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');

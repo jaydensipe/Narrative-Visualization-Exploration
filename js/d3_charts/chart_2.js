@@ -118,7 +118,6 @@ export function updateChart2DarkMode(darkMode) {
 }
 
 export function animateChart2() {
-    // Animate the bars
     d3.selectAll("#chart-2 .bar")
         .transition()
         .duration(1000)

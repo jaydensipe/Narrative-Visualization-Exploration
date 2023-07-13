@@ -46,17 +46,16 @@ d3.csv("games.csv").then(function (data) {
         .attr("width", xScale.bandwidth())
         .attr("height", 0);
 
-    // Create the annotation object
     const annotations = [
         {
             type: annotationLabel,
             note: {
-                label: "Seems like a bad time for games...",
+                label: "2014-2017 saw a 50% decline in rating",
             },
             x: xScale(filteredData[40][0]),
             y: yScale(filteredData[40][1]),
-            dx: -120,
-            dy: -100,
+            dx: -160,
+            dy: -120,
         },
     ];
 
@@ -144,6 +143,15 @@ function updateChart1() {
     xScale.domain(filteredData.map(d => d[0]));
     yScale.domain([0, d3.max(filteredData, d => d[1])]);
 
+    g.select("g")
+        .transition()
+        .duration(400)
+        .ease(d3.easeCircle)
+        .call(d3.axisBottom(xScale).tickValues(filteredData.map(d => d[0])))
+        .selectAll("text")
+        .attr("transform", "rotate(-45)")
+        .style("text-anchor", "end");
+
     g.selectAll('rect').data(filteredData)
         .transition()
         .duration(400)
@@ -161,5 +169,4 @@ function updateChart1() {
 
     g.selectAll(".annotation").remove();
 }
-
 document.getElementById("sort").addEventListener("change", sortChart1);
