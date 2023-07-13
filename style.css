@@ -16,9 +16,20 @@
 }
 
 body {
+  font-size: 1px;
   font-family: var(--font);
   background-color: #e3fffd;
   transition: var(--dark-mode-transition-time);
+}
+
+@media only screen and (min-width : 1000px) {
+  html {
+    font-size: 1vw;
+  }
+}
+
+a {
+  color: #4480b1;
 }
 
 .dark-body {
@@ -26,11 +37,12 @@ body {
 }
 
 .title {
+  font-size: 2.4rem;
   background-color: var(--orange);
   padding: 1rem;
   color: white;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 1rem;
   transition: var(--dark-mode-transition-time);
 }
 
@@ -60,12 +72,12 @@ body {
   flex-direction: column;
   align-items: center;
   margin: auto;
-  width: 80%;
-  height: 500px;
+  width: 78rem;
+  height: 37rem;
   overflow-y: auto;
   overflow-x: hidden;
   background-color: white;
-  border-radius: 15px;
+  border-radius: 1rem;
   box-shadow: 12px 12px 2px 1px var(--blue-alpha);
   transition: var(--dark-mode-transition-time);
 }
@@ -78,12 +90,14 @@ body {
 }
 
 .inner-container {
+  font-size: 1.275rem;
+  word-break: break-word;
+  hyphens: manual;
   display: flex;
   flex-direction: row;
-  gap: 0px;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1000px) {
   .inner-container {
     flex-direction: column !important;
     gap: 1rem !important;
@@ -104,18 +118,18 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1.0rem;
+  padding: 2.8rem;
   margin: auto;
-  width: 70%;
+  width: 70vw;
 }
 
 .button {
   background-color: var(--orange);
-  font-size: 15px;
+  font-size: 1.15rem;
   border: none;
   padding: 0.7rem;
   color: white;
-  border-radius: 5px;
+  border-radius: 0.4rem;
   font-family: var(--font);
   transition: var(--dark-mode-transition-time);
 }
@@ -136,6 +150,8 @@ body {
 }
 
 .title-text {
+  font-weight: 600;
+  font-size: 2.3rem;
   background-color: var(--blue);
   padding: 1rem;
   color: white;
@@ -151,17 +167,17 @@ h1.title-text {
 
 .bottom-title-text {
   background-color: rgb(88, 161, 206);
-  font-size: 40px;
+  font-size: 3rem;
   padding: 1rem;
   color: white;
-  border-radius: 15px;
+  border-radius: 1rem;
   text-align: center;
   animation: var(--default-popin);
   transition: var(--dark-mode-transition-time);
 }
 
 .sub-text {
-  font-size: 25px;
+  font-size: 1.75rem;
   padding: 1rem;
   color: var(--blue);
   text-align: center;
@@ -173,7 +189,9 @@ h1.title-text {
 }
 
 .spinning-globe {
-  margin: -30px;
+  width: 22rem;
+  height: 22rem;
+  margin: -2.25rem;
   animation: popin 1s cubic-bezier(1, 0, 0, 1);
   animation-fill-mode: forwards;
   animation-delay: 0.5s;
@@ -221,10 +239,14 @@ ul {
   @media screen and (max-width: 650px) {
     transform: scale(0.75, 0.75);
   }
+
+  @media screen and (max-width: 450px) {
+    transform: scale(0.6, 0.6);
+  }
 }
 
 .bar:hover {
-  fill: var(--light-green);
+  opacity: 0.5;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -239,6 +261,24 @@ ul {
   @media screen and (max-width: 1000px) {
     margin: 0 0 0 100px;
   }
+
+  @media screen and (max-width: 650px) {
+    transform: scale(0.95, 0.95);
+  }
+}
+
+.arc>text,
+.count-text,
+text.annotation-note-label {
+  font-size: 17px;
+  animation: var(--default-popin);
+  scale: 0;
+  animation-fill-mode: forwards;
+  animation-delay: 0.25s;
+}
+
+.annotation-connector {
+  opacity: 0.2;
 }
 
 .arc:hover {

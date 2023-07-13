@@ -1,7 +1,10 @@
-import updateDarkModeColor from "./d3_charts/chart_3";
+import { updateChart1DarkMode } from "./d3_charts/chart_1";
+import { updateChart2DarkMode } from "./d3_charts/chart_2";
+import { updateChart3DarkMode } from "./d3_charts/chart_3";
 
 export var darkMode = Boolean(false);
 
+// Switches the dark mode on and off
 function switchDarkMode() {
 
     if (darkMode) {
@@ -56,6 +59,9 @@ function switchDarkMode() {
         darkMode = true;
     }
 
-    updateDarkModeColor(darkMode);
+    // Update the charts
+    updateChart1DarkMode(darkMode);
+    updateChart2DarkMode(darkMode);
+    updateChart3DarkMode(darkMode);
 }
 document.getElementById("dark-mode-toggle-button").addEventListener("click", switchDarkMode);

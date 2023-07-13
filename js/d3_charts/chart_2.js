@@ -1,12 +1,19 @@
 import * as d3 from 'd3';
 
 // Chart 2 D3 Charting
-var x = null;
+var top10;
+var color;
 
-const svg = d3.select("#chart-2"),
-    margin = { top: 0, right: 10, bottom: 20, left: 250 },
+const svg = d3.select("#chart-2").attr("viewBox", `0 0 600 350`),
+    margin = { top: 0, right: 10, bottom: 40, left: 250 },
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom;
+
+const g = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+const x = d3.scaleLinear().rangeRound([0, width]);
+const y = d3.scaleBand().rangeRound([height, 0]).padding(0.1);
 
 d3.csv("games.csv").then(function (data) {
     data.forEach(function (d) {
@@ -17,20 +24,13 @@ d3.csv("games.csv").then(function (data) {
         return d3.descending(a.rating, b.rating);
     });
 
-    var top10 = data.slice(0, 10);
-
-    x = d3.scaleLinear().rangeRound([0, width]);
-    var y = d3.scaleBand().rangeRound([height, 0]).padding(0.1);
-
-    var g = svg.append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    top10 = data.slice(0, 10);
 
     x.domain([4.5, d3.max(top10, function (d) { return d.rating; })]);
     y.domain(top10.map(function (d) { return d.name; }));
 
-    var colorScale = d3.scaleDivergingSymlog()
-        .domain([0, top10.length])
-        .interpolator(d3.interpolateRgb.gamma(2.2)("lightgreen", "darkgreen"));
+    // Updates color depending on dark mode
+    updateChart2DarkMode();
 
     g.selectAll(".bar")
         .data(top10)
@@ -38,7 +38,7 @@ d3.csv("games.csv").then(function (data) {
         .attr("class", "bar")
         .attr("y", function (d) { return y(d.name); })
         .attr("height", y.bandwidth())
-        .attr("fill", function (d, i) { return colorScale(i); })
+        .attr("fill", function (d, i) { return color(i); })
         .on("click", function (d, i) { openVideoPlayback(i); });
 
     g.append("g")
@@ -46,7 +46,14 @@ d3.csv("games.csv").then(function (data) {
         .call(d3.axisBottom(x));
 
     g.append("g")
-        .call(d3.axisLeft(y));
+        .call(d3.axisLeft(y))
+        .append("text")
+        .attr("x", -margin.left)
+        .attr("y", height / 2)
+        .attr("dy", "0.32em")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(-90)")
+        .text("Rating");
 
 }).catch(function (error) {
     console.log(error);
@@ -54,7 +61,7 @@ d3.csv("games.csv").then(function (data) {
 
 // Opens video playback in a new tab
 function openVideoPlayback(d) {
-    let url = null;
+    let url;
 
     switch (d.id) {
         case "43252":
@@ -96,9 +103,23 @@ function openVideoPlayback(d) {
     window.open(url, "_blank");
 }
 
+export function updateChart2DarkMode(darkMode) {
+    if (darkMode) {
+        color = d3.scaleSequential(d3.interpolateMagma)
+            .domain([-5, top10.length])
+    }
+    else {
+        color = d3.scaleSequential(d3.interpolateOranges)
+            .domain([top10.length, -10])
+    }
+
+    d3.selectAll("#chart-2 .bar")
+        .attr("fill", function (d, i) { return color(i); })
+}
+
 export function animateChart2() {
     // Animate the bars
-    d3.selectAll(".bar")
+    d3.selectAll("#chart-2 .bar")
         .transition()
         .duration(1000)
         .ease(d3.easeBounceInOut)

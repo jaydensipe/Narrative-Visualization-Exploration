@@ -16,8 +16,7 @@
 </head>
 
 <body id="body">
-    <h1 class="title">Jayden Sipe - Narrative Visualization 📈</h1>
-    <br />
+    <h1 class="title" style="cursor: pointer;" onclick="location.reload()">Jayden Sipe - Narrative Visualization 📈</h1>
     <div class="container" id="page-1">
         <h1 class="title-text" style="text-align: center !important; margin-left: 0 !important;">Exploring the World
             of...</h1>
@@ -28,49 +27,71 @@
     </div>
     <div class="container" id="page-2" style="display: none;">
         <h1 class="title-text">Let's take a look at our dataset...</h1>
-        <p style="font-weight: bold; font-size: 1.1rem; text-align: center;">The Video Game Dataset contains 20,580
-            entries, with each entry representing a video game. The dataset
-            includes 8 columns:</p>
-        <ul style="font-size: 1.1rem;">
-            <li><b>id</b>: Unique identifier for each video game.</li>
-            <li><b>name</b>: Name of the video game.</li>
-            <li><b>released</b>: The release date of the video game.</li>
-            <li><b>added</b>: The number of times the game has been added or favorited.</li>
-            <li><b>playtime</b>: The average playtime in minutes.</li>
-            <li><b>reviews_count</b>: The number of reviews for the video game.</li>
-            <li><b>ratings_count</b>: The total number of ratings received by the game.</li>
-            <li><b>rating</b>: The average rating score for the video game.</li>
-        </ul>
-        <h1 class="sub-text">Now, let's take a look at some interesting information!</h1>
+
+        <div class="inner-container" style="flex-direction: column; align-items: center;">
+            <p style="font-weight: bold; text-align: center;">The Video Game Dataset contains 20,580
+                entries, with each entry representing a video game. The dataset
+                includes 8 columns:</p>
+            <ul>
+                <li><b>id</b>: Unique identifier for each video game.</li>
+                <li><b>name</b>: Name of the video game.</li>
+                <li><b>released</b>: The release date of the video game.</li>
+                <li><b>added</b>: The number of times the game has been added or favorited.</li>
+                <li><b>playtime</b>: The average playtime in minutes.</li>
+                <li><b>reviews_count</b>: The number of reviews for the video game.</li>
+                <li><b>ratings_count</b>: The total number of ratings received by the game.</li>
+                <li><b>rating</b>: The average rating score for the video game.</li>
+            </ul>
+            <h1 class="sub-text">Now, let's take a look at some interesting information!</h1>
+        </div>
     </div>
     <div class="container" id="page-3" style="display: none;">
         <h1 class="title-text">Is there a relation between rating and date
             released?</h1>
-        <br />
-        <br />
-        <br />
-        <svg id="chart-1" width="900" height="300"></svg>
+        <div class="inner-container" style="flex-direction: column; align-items: center;">
+            <div style="font-size: 1rem;">
+                <label for="sort">Sort by: </label>
+                <select style="font-size: 1rem;" name="sort" id="sort">
+                    <option value="year" sel>Year</option>
+                    <option value="asc">Ascending Rating</option>
+                    <option value="desc">Descending Rating</option>
+                </select>
+            </div>
+            <br />
+            <svg id="chart-1" style="width: 70rem; height: 21rem;" width="1000" height="300"></svg>
+            <br />
+            <p style="text-align: center;">
+                As we analyze this data, a <b>clear relationship</b> between <b>rating</b> and <b>year</b> becomes
+                apparent. Specifically,
+                during
+                the years 2014-2018, there is a significant drop in estimated ratings compared to other years. Although
+                this
+                observation is limited to a portion of the dataset, it remains intriguing to observe. Feel free to use
+                the
+                <b>selection above</b> to change how the data is <b>sorted</b>.
+            </p>
+        </div>
     </div>
     <div class="container" id="page-4" style="display: none;">
         <h1 class="title-text">What are the Top-10 Highest Rated Games? *
         </h1>
         <div class="inner-container">
-            <p style="font-size: 1.1rem; text-align: left; max-width: 250px;">Here, you have the
+            <p style="text-align: left; max-width: 20rem;">Here, you have the
                 opportunity to explore the <b>top-rated games</b> from <i>within this dataset*</i>, enabling you to make
                 informed
                 decisions about which games to consider. <br /> <br />As you hover over each bar in the chart, you have
                 the option to <b>click</b> and be <b>directed to a YouTube video</b> showcasing the trailer for the
                 selected game.
                 This interactive feature enables you to explore the game further and get a glimpse of it's gameplay.</p>
-            <svg id="chart-2" width="600" height="350"></svg>
+            <svg id="chart-2" style="width: 45rem; height: 26.25rem;" width="600" height="350"></svg>
         </div>
     </div>
     <div class="container" id="page-5" style="display: none;">
         <h1 class="title-text">Historically, which month released the most games?
         </h1>
-        <div class="inner-container">
-            <svg id="chart-3"></svg>
-            <p style="font-size: 1.1rem; text-align: right; max-width: 250px;">This pie chart provides an overview of
+        <div class="inner-container" style="gap: 15rem;">
+            <svg id="chart-3" style="width: 25rem; height: 25rem;" viewBox="0 0 350 350"></svg>
+            <p style="text-align: right; max-width: 20rem;">This pie chart provides an overview of
                 the <b>number of games</b> released in each <b>corresponding month</b>. By examining the chart, we can
                 observe that
                 November had the highest count, <i>indicating</i> the greatest amount of games released during that
@@ -85,22 +106,25 @@
     <div class="container" id="page-6" style="display: none;">
         <h1 class="title-text">Credits!
         </h1>
-        <p style="font-size: 1.1rem; text-align: center;">Created for the <a
-                href="https://cs.illinois.edu/academics/graduate/professional-mcs"><b>University of
-                    Illinois at Urbana-Champaign's</b></a> CS 416 Data Visualization course.</p>
-        <ul style="font-size: 1.1rem;">
-            <li><b>Author:</b> Jayden Sipe</li>
-            <li><b>Dataset:</b> <a
-                    href="https://www.kaggle.com/datasets/shivamvadalia27/video-games?resource=download">https://www.kaggle.com/datasets/shivamvadalia27/video-games?resource=download</a>
-            </li>
-            <li><b>Tools used:</b> HTML, CSS, JS, D3.js, Vite, Node.js</li>
-        </ul>
+        <div class="inner-container" style="flex-direction: column; align-items: center;">
+            <p style=" text-align: center;">Created for the <a
+                    href="https://cs.illinois.edu/academics/graduate/professional-mcs"><b>University of
+                        Illinois at Urbana-Champaign's</b></a> CS 416 Data Visualization course.</p>
+            <ul>
+                <li><b>Author:</b> Jayden Sipe</li>
+                <li><b>Dataset:</b> <a
+                        href="https://www.kaggle.com/datasets/shivamvadalia27/video-games?resource=download">https://www.kaggle.com/datasets/shivamvadalia27/video-games?resource=download</a>
+                </li>
+                <li><b>Tools used:</b> HTML, CSS, JS, D3.js, Vite, Node.js</li>
+            </ul>
+            <br />
+            <h1 class="sub-text">Thanks for viewing! 👋</h1>
+        </div>
     </div>
-    <br />
     <div class=" button-container">
         <button class="button" id="back-button">← Go back</button>
         <button id="dark-mode-toggle-button"
-            style="background-color: transparent; scale: 1.5; border-color: transparent; cursor: pointer;"
+            style="background-color: transparent; font-size: 1.5rem; border-color: transparent; cursor: pointer;"
             title="Dark mode toggle">🌖</button>
         <button class="button" id="next-button">Next →</button>
     </div>
